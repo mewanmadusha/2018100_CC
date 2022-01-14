@@ -69,7 +69,7 @@ spec:
     port: 5000
     targetPort: 5000
 EOF'''         
-                  sh 'gcloud auth activate-service-account --key-file /var/lib/jenkins/.certificate/fluent-cable-301617-9205e11599c9.json'
+                  sh 'gcloud auth activate-service-account --key-file /var/lib/jenkins/.certificate/thematic-keel-338120-e7decd1ed7a4.json'
                   sh 'gcloud config set compute/zone asia-southeast1-b'
                   sh 'gcloud config set project My First Project'
                   sh 'gcloud container clusters get-credentials space-cluster --zone asia-southeast1-b --project My First Project'
