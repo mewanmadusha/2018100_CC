@@ -1,7 +1,7 @@
 pipeline {
     environment {
    	 PROJECT = "iit-cc-cw"
- 	 APP_NAME = "coinbase"
+ 	   APP_NAME = "coinbase"
      BRANCH_NAME = "main"
    	 IMAGE_TAG = "mewan/${PROJECT}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
                 }
@@ -34,18 +34,18 @@ pipeline {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cc-cw-api-deploy
+  name: coinbase-deploy
 spec:
   selector:
     matchLabels:
-      app: cc-cw-api-stage
-      department: cc-cw-api-app
+      app: coinbase-stage
+      department: coinbase-app
   replicas: 2
   template:
     metadata:
       labels:
-        app: cc-cw-api-stage
-        department: cc-cw-api-app
+        app: coinbase-stage
+        department: coinbase-app
     spec:
       containers:
       - name: hello
@@ -58,12 +58,12 @@ EOF'''
 apiVersion: v1
 kind: Service
 metadata:
-  name: cc-cw-api-service
+  name: coinbase-service
 spec:
   type: LoadBalancer
   selector:
-    app: cc-cw-api-stage
-    department: cc-cw-api-app
+    app: coinbase-stage
+    department: coinbase-app
   ports:
   - protocol: TCP
     port: 5000
@@ -84,12 +84,12 @@ EOF'''
            }
            post {
               always {
-                 mail to: 'pavaratharkana@gmail.com',
+                 mail to: 'kavindasg@gmail.com',
                           subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
                           body: "${PROJECT}/${APP_NAME}/${env.BRANCH_NAME}/${env.BUILD_NUMBER}"
                      }
               failure {
-                    mail to: 'pavaratharkana@gmail.com',
+                    mail to: 'kavindasg@gmail.com',
                           subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                           body: "Something is wrong with ${env.BUILD_URL}"
                       }
