@@ -8,6 +8,7 @@ class CoinbaseApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("test initiate");
 	}
 
 }
